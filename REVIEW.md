@@ -28,7 +28,7 @@ Fix: validate filename, reject path separators, use `Path.resolve()` and check i
 `UPDATE readiness SET status = 'READY'` runs whenever ANY document is tagged. One W-2 arriving marks the entire CEL as READY even if coverage is incomplete. Readiness needs proper pathway/coverage evaluation.
 
 
-### 8. Global DB Connection (Low) — line 14
+### 8. Global DB Connection (Low) 
 `DB = sqlite3.connect(...)` at module import. No connection pooling, no cleanup, `check_same_thread=False` hides threading bugs.
 
 
