@@ -1,4 +1,4 @@
-inbox/
-store/
+.venv/
 __pycache__/
-*.pyc
+inbox/
+outbox.jsonl
