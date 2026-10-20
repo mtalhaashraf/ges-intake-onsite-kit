@@ -9,6 +9,9 @@ import json
 import sys
 from datetime import date
 
+from ges_intake import engine
+from ges_intake.library import EngineError
+
 
 def parse_args(argv=None):
     p = argparse.ArgumentParser(prog="ges_intake")
@@ -25,12 +28,16 @@ def parse_args(argv=None):
 
 def run(args) -> dict:
     """Ingest every inbox in order, then evaluate readiness. Return the report described in TASK.md §3."""
-    raise NotImplementedError
+    return engine.run(args)
 
 
 def main(argv=None) -> int:
     args = parse_args(argv)
-    report = run(args)
+    try:
+        report = run(args)
+    except EngineError as exc:
+        sys.stderr.write(f"ges_intake: {exc}\n")
+        return 2
     sys.stdout.write(json.dumps(report, indent=2, sort_keys=True) + "\n")
     return 0
 
