@@ -37,9 +37,9 @@ def parse_args(argv=None):
     sub = p.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run")
     r.add_argument("--client", required=True)
-    r.add_argument("--inbox", required=True, action="append")
+    r.add_argument("--inbox", required=True, action="append", help="repeatable; processed in the given order")
     r.add_argument("--as-of", required=True, type=date.fromisoformat)
-    r.add_argument("--outbox", required=True)
+    r.add_argument("--outbox", required=True, help="file the advisory stub appends to")
 
     return p.parse_args(argv)
 
